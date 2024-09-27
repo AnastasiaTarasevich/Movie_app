@@ -102,12 +102,18 @@ export default class App extends Component {
   }
 
   onChangeTab = (key) => {
-    this.setState({ currentTab: key, currentPage: 1 })
-    if (key === '1') {
-      this.fetchMovies(1)
-    } else if (key === '2') {
-      this.fetchRatedMovies(1)
-    }
+    this.setState({ currentTab: key, currentPage: 1 }, () => {
+      if (key === '1') {
+        this.fetchMovies(1)
+      } else if (key === '2') {
+        const { userRatings } = this.state
+        if (Object.keys(userRatings).length === 0) {
+          this.setState({ loading: false })
+        } else {
+          this.fetchRatedMovies(1)
+        }
+      }
+    })
   }
 
   onRateMovie = (movieId, value) => {
@@ -225,6 +231,11 @@ export default class App extends Component {
       noResults && !loading && !error ? (
         <Alert message="Ничего не найдено" description="По вашему запросу не найдено фильмов." type="info" showIcon />
       ) : null
+    const noRatingsMessage =
+      currentTab === '2' && Object.keys(userRatings).length === 0 && !loading ? (
+        <Alert message="Ничего не найдено" description="Вы не оценили наши фильмы." type="info" showIcon />
+      ) : null
+
     if (!isOnline) {
       return (
         <Alert
@@ -245,6 +256,7 @@ export default class App extends Component {
             {errorMessage}
             {spinner}
             {noMoviesMessage}
+            {noRatingsMessage}
             {loadCard}
             <Pagination
               current={currentPage}
