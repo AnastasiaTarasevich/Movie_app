@@ -1,0 +1,59 @@
+html,
+body {
+  font:
+    14px 'Helvetica Neue',
+    Helvetica,
+    Arial,
+    sans-serif;
+    background-color: #f7f7f7;
+  font-weight: 400;
+  margin: 0;
+  padding: 0;
+}
+
+button {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: none;
+  font-size: 100%;
+  vertical-align: baseline;
+  font-family: inherit;
+  font-weight: inherit;
+  color: inherit;
+  -webkit-appearance: none;
+  appearance: none;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+button::-moz-focus-inner {
+  border: none;
+}
+main{
+    background-color: #ffffff;
+}
+
+:focus {
+  outline: 0;
+}
+
+.hidden {
+  display: none;
+}
+.offNetwork{
+  margin-top: 10px;
+}
+#root {
+  background-color: #ffffff;
+  font-size: 12px;
+  margin: auto;
+  max-width: 1010px;
+  min-height: 100vh;
+  min-width: 420px;
+  padding: 20px 35px;
+}
+.pages__pagination{
+  justify-content: center;
+  margin-top: 5px;
+}
